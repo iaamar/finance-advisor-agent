@@ -8,7 +8,9 @@ primary_region = "iad"
 
 [env]
   QUOTE_PROVIDER = "yahoo"
-  LANGSMITH_PROJECT = "finance-advisor-agent"
+  APP_ENV = "production"
+  LANGSMITH_TRACING = "true"
+  LANGSMITH_PROJECT = "finance-advisor-agent-prod"
   # Browsers reach the API through the Netlify proxy (same origin); CORS is only for direct calls.
   CORS_ORIGINS = '["https://finance-advisor-desk.netlify.app", "http://localhost:5173"]'
 

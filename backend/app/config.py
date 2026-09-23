@@ -15,7 +15,8 @@ class Settings(BaseSettings):
     # Observability (LangSmith). Traces are sent only when both are set.
     langsmith_tracing: bool = False
     langsmith_api_key: str = ""
-    langsmith_project: str = "finance-advisor-agent"
+    langsmith_project: str = "finance-advisor-agent-local"
+    app_env: str = "local"  # "local" | "production"; recorded on every trace
     langsmith_endpoint: str = ""  # e.g. https://eu.api.smith.langchain.com for EU accounts
 
     # Short-term memory (Redis). If Redis is unreachable we fall back to an

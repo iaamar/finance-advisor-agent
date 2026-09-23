@@ -6,6 +6,7 @@ GET  /api/conversations/{id}        history for a conversation
 DELETE /api/conversations/{id}      clear a conversation
 POST /api/workflows/quote           Workflow #1 directly -> {stock_price, summary, ...}
 POST /api/workflows/filings         Workflow #2 directly -> per-form summaries
+GET  /api/observability             LangSmith dashboard link for this environment
 GET  /api/health
 """
 
@@ -24,7 +25,7 @@ from app.graphs.filings_workflow import run_filings_workflow
 from app.graphs.quote_workflow import run_quote_workflow
 from app.llm import get_llm
 from app.memory import get_store
-from app.observability import configure_tracing, tracing_enabled
+from app.observability import configure_tracing, dashboard_links, tracing_enabled
 from app.services.edgar import get_edgar
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -62,6 +63,19 @@ async def health() -> dict:
         "quote_provider": get_settings().quote_provider,
         "tracing": tracing_enabled(),
         "tracing_project": get_settings().langsmith_project if tracing_enabled() else None,
+    }
+
+
+@app.get("/api/observability")
+async def observability() -> dict:
+    """Where this environment's traces go. Open `project_url`; the Threads tab groups by conversation."""
+    links = await dashboard_links()
+    return {
+        "tracing": tracing_enabled(),
+        "environment": get_settings().app_env,
+        "project": get_settings().langsmith_project,
+        "project_url": links["project_url"] if links else None,
+        "dashboard_home": "https://smith.langchain.com",
     }
 
 

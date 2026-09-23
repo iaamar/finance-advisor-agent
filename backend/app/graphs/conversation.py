@@ -32,7 +32,7 @@ from app.graphs.filings_workflow import ALL_CATEGORIES, run_filings_workflow
 from app.graphs.quote_workflow import run_quote_workflow
 from app.llm import get_llm
 from app.memory import get_store
-from app.observability import tracing_enabled, turn_config
+from app.observability import trace_url, tracing_enabled, turn_config
 from app.services.edgar import _QUESTION_WORDS, get_edgar
 from app.services.xbrl import format_amount
 
@@ -365,7 +365,8 @@ async def chat(conversation_id: str, message: str, company_hint: str | None = No
         "candidates": s.get("candidates", []),
         "data": {k: s[k] for k in ("quote", "filings") if s.get(k)},
         "errors": s.get("errors", []),
-        # Look this up in LangSmith (search by run ID) to see the full trace of the turn.
+        # Full trace of this turn in LangSmith (None when tracing is off).
         "trace_id": str(run_id) if tracing_enabled() else None,
+        "trace_url": await trace_url(run_id),
     }
 

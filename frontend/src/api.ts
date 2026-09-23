@@ -49,6 +49,8 @@ export interface ChatResponse {
   candidates: Company[];
   data: { quote?: QuoteData; filings?: FilingsData };
   errors: string[];
+  /** LangSmith trace of this turn, when tracing is enabled on the backend. */
+  trace_url?: string | null;
 }
 
 export interface HistoryResponse {

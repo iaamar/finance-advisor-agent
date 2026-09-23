@@ -197,7 +197,7 @@ function renderResponse(res: ChatResponse, question: string): void {
     renderQuoteStrip(res) +
     `<div class="reply">${renderReply(res.reply)}</div>` +
     renderCandidates(res) +
-    renderSources(collectSources(res));
+    renderSources(collectSources(res), res.trace_url);
   const el = addAssistantMessage(html);
   // "Did you mean": re-ask the same question about the chosen company.
   el.querySelectorAll<HTMLButtonElement>(".candidate").forEach((b) =>

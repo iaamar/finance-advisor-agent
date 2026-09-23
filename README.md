@@ -72,6 +72,19 @@ A single chat page (TypeScript, HTML, CSS; no framework):
 - **Message box**: ask anything. The company can be named in the question instead, and follow-ups reuse the active company from Redis memory.
 - **Output**: a text reply, a quote strip (price, 6-month change, range), and source chips linking to each EDGAR filing used. Ambiguous names show clickable "did you mean" options.
 
+## Observability (LangSmith)
+
+Every conversation turn is one trace. It contains the LangGraph nodes, both workflows and their parallel branches, LLM calls with token usage, SEC and quote API calls, and filing summaries (with cache hit or miss). Turns carry `thread_id` = conversation ID, so the project's **Threads** tab shows whole conversations.
+
+| Environment | LangSmith project | Configure in |
+|---|---|---|
+| Local | `finance-advisor-agent-local` | `backend/.env`: `LANGSMITH_TRACING=true`, `LANGSMITH_API_KEY=…` |
+| Production (Fly.io) | `finance-advisor-agent-prod` | `fly secrets set LANGSMITH_API_KEY=…` (the rest is in `fly.toml`) |
+
+- Dashboard: https://smith.langchain.com → Projects → pick the project above.
+- `GET /api/observability` returns the direct project link for that environment.
+- Each chat answer shows a **View trace ↗** link when tracing is on.
+
 ## Running it
 
 ```bash

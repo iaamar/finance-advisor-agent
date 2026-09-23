@@ -75,8 +75,11 @@ export function collectSources(res: ChatResponse): Source[] {
   return out;
 }
 
-export function renderSources(sources: Source[]): string {
-  if (!sources.length) return "";
+export function renderSources(sources: Source[], traceUrl?: string | null): string {
+  const trace = traceUrl
+    ? `<a class="source source-trace" href="${escapeHtml(traceUrl)}" target="_blank" rel="noopener noreferrer">View trace ↗</a>`
+    : "";
+  if (!sources.length) return trace ? `<div class="sources">${trace}</div>` : "";
   const items = sources
     .map((s) =>
       s.url
@@ -84,7 +87,7 @@ export function renderSources(sources: Source[]): string {
         : `<span class="source">${escapeHtml(s.label)}</span>`,
     )
     .join("");
-  return `<div class="sources"><span class="sources-label">Sources</span>${items}</div>`;
+  return `<div class="sources"><span class="sources-label">Sources</span>${items}${trace}</div>`;
 }
 
 export function renderQuoteStrip(res: ChatResponse): string {

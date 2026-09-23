@@ -13,8 +13,10 @@ With tracing off, `traceable` is a cheap pass-through and nothing is sent.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
+import time
 from typing import Any
 
 from langsmith import traceable  # re-exported for the rest of the app
@@ -23,7 +25,7 @@ from app.config import get_settings
 
 log = logging.getLogger(__name__)
 
-__all__ = ["configure_tracing", "drop_self", "traceable", "tracing_enabled"]
+__all__ = ["configure_tracing", "dashboard_links", "drop_self", "trace_url", "traceable", "tracing_enabled"]
 
 
 def configure_tracing() -> bool:
@@ -59,5 +61,50 @@ def turn_config(conversation_id: str, run_id: Any, **metadata: Any) -> dict[str,
         "run_name": "advisor_chat_turn",
         "run_id": run_id,
         "tags": ["advisor-chat"],
-        "metadata": {"thread_id": conversation_id, "conversation_id": conversation_id, **metadata},
+        "metadata": {
+            "thread_id": conversation_id,
+            "conversation_id": conversation_id,
+            "environment": get_settings().app_env,
+            **metadata,
+        },
     }
+
+
+# ---- dashboard links -----------------------------------------------------------
+# Resolved once (org + project IDs), then every trace URL is built locally.
+_links: dict[str, str] | None = None
+_links_failed_at = 0.0
+
+
+def _resolve_links() -> dict[str, str]:
+    from langsmith import Client
+
+    client = Client()
+    name = get_settings().langsmith_project
+    try:
+        project = client.read_project(project_name=name)
+    except Exception:  # noqa: BLE001 - project is created on first trace; create it now
+        project = client.create_project(name, upsert=True)
+    host = client._host_url  # noqa: SLF001 - same host the SDK uses for its own links
+    tenant = client._get_tenant_id()  # noqa: SLF001
+    base = f"{host}/o/{tenant}/projects/p/{project.id}"
+    return {"project": name, "project_url": base, "run_url_prefix": f"{base}/r/"}
+
+
+async def dashboard_links() -> dict[str, str] | None:
+    """LangSmith project URL (None when tracing is off or LangSmith is unreachable)."""
+    global _links, _links_failed_at
+    if not tracing_enabled():
+        return None
+    if _links is None and time.monotonic() - _links_failed_at > 300:
+        try:
+            _links = await asyncio.to_thread(_resolve_links)
+        except Exception as exc:  # noqa: BLE001 - links are a convenience, never fail a request
+            _links_failed_at = time.monotonic()
+            log.warning("Could not resolve LangSmith dashboard links: %s", exc)
+    return _links
+
+
+async def trace_url(run_id: Any) -> str | None:
+    links = await dashboard_links()
+    return f"{links['run_url_prefix']}{run_id}?poll=true" if links else None
