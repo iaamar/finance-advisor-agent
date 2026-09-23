@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advisor Research Desk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true">◆</span>
+          <div>
+            <h1>Research Desk</h1>
+            <p class="sub">Any SEC-registered company · live quote · annual, quarterly &amp; current reports · insider trades</p>
+          </div>
+        </div>
+        <button id="new-chat" class="btn-ghost" type="button">New conversation</button>
+      </header>
+
+      <main id="thread" class="thread" aria-live="polite">
+        <section id="empty" class="empty">
+          <h2>Get up to speed on any stock</h2>
+          <p>
+            Pick a company below or just name it in your question. Answers come from live quote data and the company's
+            latest SEC filings (10-K / 10-Q / 8-K for US filers, 20-F / 6-K for foreign issuers), with sources.
+          </p>
+          <div class="suggestions">
+            <button type="button" class="suggestion">Get me up to speed on Coca-Cola</button>
+            <button type="button" class="suggestion">How has JPMorgan stock done over the last 6 months?</button>
+            <button type="button" class="suggestion">What are the key risks in Taiwan Semiconductor's latest annual report?</button>
+            <button type="button" class="suggestion">Any insider selling at Palantir recently?</button>
+          </div>
+        </section>
+      </main>
+
+      <div class="company-bar">
+        <label for="company-search" class="company-label">Company</label>
+        <div class="company-field">
+          <span id="company-pill" class="company-pill" hidden>
+            <span id="company-pill-text"></span>
+            <button id="company-clear" type="button" aria-label="Clear company">×</button>
+          </span>
+          <input
+            id="company-search"
+            type="text"
+            placeholder="Search any company or ticker…"
+            autocomplete="off"
+            role="combobox"
+            aria-expanded="false"
+            aria-controls="company-results"
+            aria-autocomplete="list"
+          />
+          <ul id="company-results" class="company-results" role="listbox" hidden></ul>
+        </div>
+      </div>
+
+      <form id="composer" class="composer" autocomplete="off">
+        <textarea id="input" rows="1" placeholder="Ask anything, e.g. “What changed in the latest quarterly report?”" aria-label="Message"></textarea>
+        <button id="send" type="submit" class="btn-send">Send</button>
+      </form>
+      <p class="disclaimer">Summaries of public filings for research purposes. Not investment advice.</p>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

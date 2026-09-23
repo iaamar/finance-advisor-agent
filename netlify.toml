@@ -1,0 +1,16 @@
+# Frontend (static). The backend runs on Fly.io; /api/* is proxied there so the
+# browser talks to one origin. BACKEND_URL is set in Netlify's environment.
+[build]
+  base = "frontend"
+  command = "npm ci && npm run build && node scripts/write-redirects.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

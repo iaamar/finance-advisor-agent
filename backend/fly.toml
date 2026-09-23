@@ -1,0 +1,31 @@
+# Backend API (FastAPI + LangGraph). Deploy: cd backend && fly deploy
+# Secrets (set with `fly secrets set`, never committed): REDIS_URL, ANTHROPIC_API_KEY,
+# LANGSMITH_API_KEY, SEC_USER_AGENT.
+app = "finance-advisor-agent-api"
+primary_region = "iad"
+
+[build]
+
+[env]
+  QUOTE_PROVIDER = "yahoo"
+  LANGSMITH_PROJECT = "finance-advisor-agent"
+  # Browsers reach the API through the Netlify proxy (same origin); CORS is only for direct calls.
+  CORS_ORIGINS = '["https://finance-advisor-desk.netlify.app", "http://localhost:5173"]'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[http_service.checks]]
+    grace_period = "15s"
+    interval = "30s"
+    method = "GET"
+    path = "/api/health"
+    timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
