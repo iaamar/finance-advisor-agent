@@ -9,6 +9,8 @@ frontend/  TypeScript + HTML + CSS chat UI (Vite)          -> text replies
 backend/   FastAPI + LangGraph workflows + Redis memory     -> JSON
 ```
 
+Stakeholder deck: [`presentation_deck/`](presentation_deck) ([PDF](presentation_deck/presentation_deck.pdf)).
+
 ## Architecture
 
 ```

@@ -4,14 +4,32 @@
     {
       "name": "backend",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd backend && .venv/bin/uvicorn app.main:app --port 8000 --reload"],
+      "runtimeArgs": [
+        "-c",
+        "cd backend && .venv/bin/uvicorn app.main:app --port 8000 --reload"
+      ],
       "port": 8000
     },
     {
       "name": "frontend",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "cd frontend && npx vite --port 5173"],
+      "runtimeArgs": [
+        "-c",
+        "cd frontend && npx vite --port 5173"
+      ],
       "port": 5173
+    },
+    {
+      "name": "presentation",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "presentation_deck"
+      ],
+      "port": 8765
     }
   ]
 }

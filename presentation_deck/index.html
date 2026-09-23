@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advisor Research Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&display=swap">
+<style>
+  html, body { margin:0; height:100%; background:#1b1d22; overflow:hidden; }
+  #stage { position:absolute; left:50%; top:50%; width:1920px; height:1080px; transform-origin:0 0; }
+  #stage > section { position:absolute; inset:0; width:1920px; height:1080px; box-sizing:border-box; overflow:hidden; }
+  #stage > section:not(.active) { display:none !important; }
+  section * { margin:0; box-sizing:border-box; }
+  section aside { display:none; }
+  /* <x-shape> is drawn by the Slides viewer; recreate the arrow here. */
+  x-shape { display:block; flex-shrink:0; }
+  x-shape[kind="arrow-right"] { clip-path: polygon(0 32%, 62% 32%, 62% 0, 100% 50%, 62% 100%, 62% 68%, 0 68%); }
+  #hud { position:fixed; right:16px; bottom:12px; font:13px system-ui, sans-serif; color:#aaa; user-select:none; }
+  #notes { position:fixed; left:0; right:0; bottom:0; max-height:38vh; overflow:auto; padding:16px 20px 40px;
+           background:rgba(20,22,26,.96); color:#e8e6e1; font:15px/1.55 system-ui, sans-serif; white-space:pre-wrap; display:none; }
+  body.show-notes #notes { display:block; }
+  @media print {
+    @page { size:1920px 1080px; margin:0; }
+    html, body { height:auto; overflow:visible; background:none; }
+    #stage { position:static; transform:none !important; width:auto; height:auto; }
+    #stage > section, #stage > section:not(.active) { position:relative; display:flex !important; page-break-after:always; break-after:page; }
+    #hud, #notes { display:none !important; }
+  }
+</style>
+</head>
+<body>
+<!-- Advisor Research Desk: generated from presentation_deck/slides/*.html (order: problem, goal, workflows, results).
+     Keys: → / Space next, ← previous, N speaker notes, F fullscreen. Print → Save as PDF for one slide per page. -->
+<div id="stage">
+<section id="problem" data-transition="fade" style="background:#ebe7df; color:#1b1d22; font-family:'Public Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">Advisor Research Desk · The problem</p>
+    <h2 style="font-family:'Libre Baskerville', Georgia, serif; font-size:64px; font-weight:400; line-height:1.15; color:#1b1d22">Client prep means hours in the filings</h2>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:row; gap:64px; align-items:center">
+    <div style="flex:1; display:flex; flex-direction:column; gap:16px">
+      <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#6b6f76">One annual report</p>
+      <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:144px; line-height:1.1; color:#0f5c4d">340,000</p>
+      <p style="font-size:32px; line-height:1.4; color:#4a4f57">characters in a single NVIDIA annual report, read by hand before a client call.</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:24px">
+      <div style="display:flex; flex-direction:column; gap:8px; background:#fbfaf7; padding:32px 40px; border-radius:16px; border-left:6px solid #0f5c4d">
+        <h3 style="font-size:36px; font-weight:600; color:#1b1d22">Slow</h3>
+        <p style="font-size:30px; color:#4a4f57">Check the price, then read long filings.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; background:#fbfaf7; padding:32px 40px; border-radius:16px; border-left:6px solid #0f5c4d">
+        <h3 style="font-size:36px; font-weight:600; color:#1b1d22">Inconsistent</h3>
+        <p style="font-size:30px; color:#4a4f57">Every advisor reads and summarizes differently.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px; background:#fbfaf7; padding:32px 40px; border-radius:16px; border-left:6px solid #0f5c4d">
+        <h3 style="font-size:36px; font-weight:600; color:#1b1d22">Warning signs slip past</h3>
+        <p style="font-size:30px; color:#4a4f57">Auditor issues or heavy insider selling.</p>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute; left:128px; right:128px; bottom:64px; display:flex; flex-direction:row; justify-content:space-between"><p style="font-size:24px; color:#6b6f76">Advisor Research Desk</p><p style="font-size:24px; color:#6b6f76">1</p></div>
+  <aside>Before a client conversation, an advisor has to check a stock's price by hand and then read long SEC filings. Annual reports typically run 100 to 300-plus pages; a single NVIDIA annual report (10-K) is roughly 340,000 characters. That is slow, every advisor does it a little differently, and the warning signs compliance cares most about, such as auditor problems, restatements or heavy insider selling, are easy to miss when skimming.</aside>
+</section>
+
+<section id="goal" data-transition="fade" style="background:#f4f2ee; color:#1b1d22; font-family:'Public Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:48px">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">The goal</p>
+    <h2 style="font-family:'Libre Baskerville', Georgia, serif; font-size:64px; font-weight:400; line-height:1.15; color:#1b1d22">Ask in plain English, answered in seconds</h2>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:row; gap:40px; align-items:center">
+    <div style="width:560px; display:flex; flex-direction:column; gap:16px; background:#0f5c4d; padding:48px; border-radius:32px 32px 32px 6px">
+      <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#cfe3dc">The advisor asks</p>
+      <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:44px; line-height:1.3; color:#f4f2ee">“Get me up to speed on Coca-Cola.”</p>
+      <p style="font-size:26px; line-height:1.4; color:#cfe3dc">Any of ~10,400 SEC-registered companies</p>
+    </div>
+    <x-shape kind="arrow-right" style="width:88px; height:44px; background:#0f5c4d"></x-shape>
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px">
+      <div style="display:flex; flex-direction:row; gap:24px; align-items:center; background:#fbfaf7; padding:28px 36px; border-radius:16px; border:1px solid #ddd7cc">
+        <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:36px; color:#0f5c4d">1</p>
+        <p style="font-size:32px; font-weight:600; color:#1b1d22">Current price and 6-month change</p>
+      </div>
+      <div style="display:flex; flex-direction:row; gap:24px; align-items:center; background:#fbfaf7; padding:28px 36px; border-radius:16px; border:1px solid #ddd7cc">
+        <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:36px; color:#0f5c4d">2</p>
+        <p style="font-size:32px; font-weight:600; color:#1b1d22">Key financials</p>
+      </div>
+      <div style="display:flex; flex-direction:row; gap:24px; align-items:center; background:#fbfaf7; padding:28px 36px; border-radius:16px; border:1px solid #ddd7cc">
+        <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:36px; color:#0f5c4d">3</p>
+        <p style="font-size:32px; font-weight:600; color:#1b1d22">Summary of the latest filings</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:16px; align-items:center">
+    <x-icon name="Verified" style="color:#0f5c4d; width:40px; height:40px"></x-icon>
+    <p style="font-size:30px; color:#4a4f57">Every answer shows its sources. No investment advice.</p>
+  </div>
+  <div style="position:absolute; left:128px; right:128px; bottom:64px; display:flex; flex-direction:row; justify-content:space-between"><p style="font-size:24px; color:#6b6f76">Advisor Research Desk</p><p style="font-size:24px; color:#6b6f76">2</p></div>
+  <aside>The goal: an advisor types a normal question, such as "Get me up to speed on Coca-Cola," about any of the roughly 10,400 companies on the SEC's official list, and within seconds gets three things: the current price and its six-month change, the key financials, and a plain-language summary of the latest SEC filings. Every answer links to its sources, and the tool never gives buy or sell recommendations.</aside>
+</section>
+
+<section id="workflows" data-transition="fade" style="background:#f4f2ee; color:#1b1d22; font-family:'Public Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:28px">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">How it works</p>
+    <h2 style="font-family:'Libre Baskerville', Georgia, serif; font-size:64px; font-weight:400; line-height:1.15; color:#1b1d22">Two workflows, one sourced answer</h2>
+  </div>
+  <div style="display:flex; flex-direction:row; gap:12px; align-items:center; background:#ebe7df; padding:14px 24px; border-radius:12px">
+    <p style="font-size:24px; font-weight:600; color:#1b1d22">Question</p>
+    <x-shape kind="arrow-right" style="width:32px; height:16px; background:#0f5c4d"></x-shape>
+    <p style="font-size:24px; font-weight:600; color:#1b1d22">Understand, pick workflow(s)</p>
+    <x-shape kind="arrow-right" style="width:32px; height:16px; background:#0f5c4d"></x-shape>
+    <p style="font-size:24px; font-weight:600; color:#0f5c4d">#1 and/or #2</p>
+    <x-shape kind="arrow-right" style="width:32px; height:16px; background:#0f5c4d"></x-shape>
+    <p style="font-size:24px; font-weight:600; color:#1b1d22">Sourced answer</p>
+    <div style="flex:1"></div>
+    <x-icon name="Chat" style="color:#0f5c4d; width:28px; height:28px"></x-icon>
+    <p style="font-size:24px; color:#4a4f57">Remembers the company</p>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:row; gap:32px">
+    <div style="flex:1; display:flex; flex-direction:column; gap:14px; background:#fbfaf7; padding:24px 32px; border:1px solid #ddd7cc; border-top:6px solid #0f5c4d; border-radius:12px">
+      <h3 style="font-size:30px; font-weight:600; color:#0f5c4d">Workflow #1 · Stock quote</h3>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">1</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Company name</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">2</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Find the official ticker</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">3</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Fetch 6 months of daily prices</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">4</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Calculate price, 6-month change, high and low</p></div>
+      <div style="display:flex; flex-direction:row; gap:12px; align-items:center; background:#e2ece8; padding:12px 16px; border-radius:10px"><x-icon name="CheckCircle" style="color:#0f5c4d; width:28px; height:28px"></x-icon><p style="font-size:24px; font-weight:600; color:#0f5c4d">Output: stock price + one-paragraph summary</p></div>
+      <div style="flex:1"></div>
+      <p style="font-size:24px; line-height:1.3; color:#4a4f57"><b>Numbers are calculated, never generated by AI.</b></p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:14px; background:#fbfaf7; padding:24px 32px; border:1px solid #ddd7cc; border-top:6px solid #0f5c4d; border-radius:12px">
+      <h3 style="font-size:30px; font-weight:600; color:#0f5c4d">Workflow #2 · SEC filings</h3>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">1</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Company name</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">2</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Find it in the SEC's official list</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">3</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Read 4 report types at once: annual, quarterly, current events, insider trades</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">4</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Keep what matters; skip boilerplate</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">5</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Check red flags with fixed rules</p></div>
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center"><p style="font-size:24px; font-weight:600; color:#f4f2ee; background:#0f5c4d; padding:2px 12px; border-radius:999px">6</p><p style="font-size:24px; line-height:1.3; color:#1b1d22">Pull key financials from official SEC data</p></div>
+      <div style="display:flex; flex-direction:row; gap:12px; align-items:center; background:#e2ece8; padding:12px 16px; border-radius:10px"><x-icon name="CheckCircle" style="color:#0f5c4d; width:28px; height:28px"></x-icon><p style="font-size:24px; font-weight:600; color:#0f5c4d">Output: one combined summary</p></div>
+    </div>
+  </div>
+  <div style="position:absolute; left:128px; right:128px; bottom:64px; display:flex; flex-direction:row; justify-content:space-between"><p style="font-size:24px; color:#6b6f76">Advisor Research Desk</p><p style="font-size:24px; color:#6b6f76">3</p></div>
+  <aside>Top band: the assistant reads the question, works out which company it is about and which workflow or workflows are needed, runs them, and returns one answer with sources. It keeps short-term memory of the conversation, so a follow-up like "any insider selling?" stays on the same company.
+
+Workflow 1, stock quote: match the company name to its official ticker, fetch six months of daily prices, and calculate the current price, six-month change and high/low with ordinary arithmetic. The output is the price plus a one-paragraph summary. The AI never produces these numbers.
+
+Workflow 2, SEC filings: find the company in the SEC's official list, then read four report types at the same time: the annual report (10-K, or 20-F for foreign companies), the quarterly report (10-Q), current-event reports (8-K or 6-K: earnings releases, deals, executive changes) and insider trades (Form 4). We keep management's discussion of results, top company-specific risks, outlook, buybacks, legal matters and insider buying and selling, and skip boilerplate. Red flags (control weaknesses, restatements, going-concern doubts, auditor changes) are checked by fixed rules, not AI. Key financials come from the structured financial data the SEC publishes. The output is one combined summary.</aside>
+</section>
+
+<section id="results" data-transition="fade" style="background:#ebe7df; color:#1b1d22; font-family:'Public Sans', Arial, sans-serif; padding:128px 128px 160px; display:flex; flex-direction:column; gap:36px">
+  <div style="display:flex; flex-direction:column; gap:16px">
+    <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">Results · NVIDIA, live on 2026-09-23</p>
+    <h2 style="font-family:'Libre Baskerville', Georgia, serif; font-size:64px; font-weight:400; line-height:1.15; color:#1b1d22">Real answers from both workflows</h2>
+  </div>
+  <div style="flex:1; display:flex; flex-direction:row; gap:32px">
+    <div style="width:480px; display:flex; flex-direction:column; gap:12px; background:#fbfaf7; padding:36px; border-radius:16px; border-top:6px solid #0f5c4d">
+      <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">Workflow #1</p>
+      <h3 style="font-size:30px; font-weight:600; color:#1b1d22">Stock quote</h3>
+      <p style="font-size:24px; color:#6b6f76">stock price</p>
+      <p style="font-family:'Libre Baskerville', Georgia, serif; font-size:80px; line-height:1.1; color:#0f5c4d">$225.28</p>
+      <p style="font-size:24px; color:#6b6f76">as of 2026-09-23</p>
+      <hr style="width:408px; border-top:1px solid #ddd7cc">
+      <p style="font-size:24px; color:#6b6f76">summary</p>
+      <p style="font-size:24px; line-height:1.4; color:#1b1d22">Up +$49.64 (+28.26%) over the last 6 months, from $175.64 on 2026-03-23; 6-month range $165.17–$235.74.</p>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:20px; background:#fbfaf7; padding:36px; border-radius:16px; border-top:6px solid #0f5c4d">
+      <div style="display:flex; flex-direction:column; gap:4px">
+        <p style="font-size:24px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#0f5c4d">Workflow #2</p>
+        <h3 style="font-size:30px; font-weight:600; color:#1b1d22">SEC filings</h3>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:row; gap:40px">
+        <div style="width:470px; display:flex; flex-direction:column">
+          <p style="font-size:24px; color:#6b6f76">Quarter ended 2026-07-26 · vs a year ago</p>
+          <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:baseline; padding:10px 0px; border-bottom:1px solid #ddd7cc"><p style="font-size:24px; color:#4a4f57">Revenue</p><p style="font-size:24px; color:#1b1d22"><b>$96.2B</b>  <span style="color:#0f5c4d">+106%</span></p></div>
+          <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:baseline; padding:10px 0px; border-bottom:1px solid #ddd7cc"><p style="font-size:24px; color:#4a4f57">Gross profit</p><p style="font-size:24px; color:#1b1d22"><b>$72.1B</b>  <span style="color:#0f5c4d">+113%</span></p></div>
+          <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:baseline; padding:10px 0px; border-bottom:1px solid #ddd7cc"><p style="font-size:24px; color:#4a4f57">Operating income</p><p style="font-size:24px; color:#1b1d22"><b>$63.7B</b>  <span style="color:#0f5c4d">+124%</span></p></div>
+          <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:baseline; padding:10px 0px; border-bottom:1px solid #ddd7cc"><p style="font-size:24px; color:#4a4f57">Net income</p><p style="font-size:24px; color:#1b1d22"><b>$59.7B</b>  <span style="color:#0f5c4d">+126%</span></p></div>
+          <div style="display:flex; flex-direction:row; justify-content:space-between; align-items:baseline; padding:10px 0px; border-bottom:1px solid #ddd7cc"><p style="font-size:24px; color:#4a4f57">Earnings per share</p><p style="font-size:24px; color:#1b1d22"><b>$2.46</b>  <span style="color:#0f5c4d">+128%</span></p></div>
+          <p style="font-size:24px; color:#6b6f76; padding:10px 0px 0px 0px">Source: official SEC data</p>
+        </div>
+        <div style="flex:1; display:flex; flex-direction:column; gap:12px">
+          <p style="font-size:24px; font-weight:600; color:#0f5c4d">Filings read in about 4 seconds</p>
+          <p style="font-size:24px; line-height:1.35; color:#1b1d22"><b>Annual report</b> (filed 2026-02-25): results, risks, business, buybacks; <span style="color:#0f5c4d"><b>no red flags found</b></span></p>
+          <p style="font-size:24px; line-height:1.35; color:#1b1d22"><b>Quarterly report</b> (filed 2026-08-26)</p>
+          <p style="font-size:24px; line-height:1.35; color:#1b1d22"><b>3 event reports:</b> earnings 2026-08-26; agreement + new debt 2026-08-17; other 2026-09-03</p>
+          <p style="font-size:24px; line-height:1.35; color:#1b1d22"><b>Insider trades</b>, Sep 2–22: 19 sales ≈ $954M, 0 purchases; 3 under pre-set plans</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute; left:128px; right:128px; bottom:64px; display:flex; flex-direction:row; justify-content:space-between; gap:32px"><p style="font-size:24px; color:#6b6f76">Works for any of ~10,400 SEC-registered companies, including foreign filers (e.g., Toyota, TSMC) in their own currency.</p><p style="font-size:24px; color:#6b6f76">4</p></div>
+  <aside>These are real responses from the two workflows for NVIDIA, fetched live on 2026-09-23.
+
+Workflow 1 returns two fields, a stock price and a summary: $225.28 as of 2026-09-23, up $49.64 (28.26 percent) over six months from $175.64 on 2026-03-23, with a six-month range of $165.17 to $235.74.
+
+Workflow 2, for the quarter ended 2026-07-26, from official SEC data: revenue $96.2 billion, up 106 percent from a year ago; gross profit $72.1 billion, up 113 percent; operating income $63.7 billion, up 124 percent; net income $59.7 billion, up 126 percent; diluted earnings per share $2.46, up 128 percent.
+
+Filings were read in about four seconds. Annual report (10-K, filed 2026-02-25): sections used were management's discussion and analysis, risk factors, business, buybacks and other information; no red flags found. Quarterly report (10-Q, filed 2026-08-26). Three recent event reports (8-K): earnings release on 2026-08-26, a material agreement plus new debt on 2026-08-17, and another event on 2026-09-03. Insider trades (Form 4) from September 2 to 22, 2026: 19 open-market sales totalling about $954 million and no purchases; 3 of the sales were made under pre-set 10b5-1 trading plans, which executives arrange in advance.
+
+The same works for any of about 10,400 SEC-registered companies, including foreign filers such as Toyota and TSMC, shown in their own currency.</aside>
+</section>
+
+</div>
+<div id="notes"></div>
+<div id="hud"></div>
+<script>
+  const slides = [...document.querySelectorAll('#stage > section')];
+  const stage = document.getElementById('stage'), hud = document.getElementById('hud'), notes = document.getElementById('notes');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1)) || 1) - 1));
+  function fit() {
+    const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `scale(${s}) translate(-50%, -50%)`;
+  }
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach((el, j) => el.classList.toggle('active', j === i));
+    const aside = slides[i].querySelector('aside');
+    notes.textContent = aside ? aside.textContent.trim() : '(no notes)';
+    hud.textContent = `${i + 1} / ${slides.length}  ·  ← →  ·  N notes`;
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(i + 1);
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) show(i - 1);
+    else if (e.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes');
+    else if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.();
+  });
+  addEventListener('click', e => { if (!e.target.closest('a, #notes')) show(e.clientX > innerWidth / 3 ? i + 1 : i - 1); });
+  addEventListener('resize', fit);
+  fit(); show(i);
+</script>
+</body>
+</html>

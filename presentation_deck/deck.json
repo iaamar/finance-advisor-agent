@@ -1,0 +1,36 @@
+{
+  "v": 4,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-09-23T17:48:01Z"
+  },
+  "title": "Advisor Research Desk",
+  "order": [
+    "problem",
+    "goal",
+    "workflows",
+    "results"
+  ],
+  "cover": "problem",
+  "sections": {
+    "s1": {
+      "description": "The problem advisors face and what the desk sets out to do",
+      "start": "problem"
+    },
+    "s2": {
+      "description": "How the two workflows work and what they returned for NVIDIA",
+      "start": "workflows"
+    }
+  },
+  "faces": {
+    "libre-baskerville": {
+      "family": "Libre Baskerville",
+      "href": "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
+    },
+    "public-sans": {
+      "family": "Public Sans",
+      "href": "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400..700&display=swap"
+    }
+  },
+  "designSystems": []
+}
