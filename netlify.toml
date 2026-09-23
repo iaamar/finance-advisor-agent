@@ -3,7 +3,7 @@
 [build]
   base = "frontend"
   command = "npm ci && npm run build && node scripts/write-redirects.mjs"
-  publish = "dist"
+  publish = "frontend/dist"  # relative to the repo root
 
 [build.environment]
   NODE_VERSION = "22"
